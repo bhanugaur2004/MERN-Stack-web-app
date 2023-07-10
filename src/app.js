@@ -4,7 +4,7 @@ require("./db/conn");
 const User = require("./models/user")
 const hbs = require("hbs");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 const staticpath = path.join(__dirname,);
 const templatespath = path.join(__dirname,"../template/views");
@@ -21,7 +21,7 @@ hbs.registerPartials(partialpath);
 // routing 
 // app.get(path, callback)
 app.get("/",(req,res)=>{
-    res.render("C:\\Users\\vivek singh\\Desktop\\Practice-1\\template\\index.hbs");
+    res.render("index");
 })
 
 // app.get("/contact",(req,res)=>{
@@ -32,7 +32,7 @@ app.post("/contact", async(req, res) => {
         // res.send(req.body);
         const userData = new User(req.body);
         await userData.save();
-        res.status(201).render("C:\\Users\\vivek singh\\Desktop\\Practice-1\\template\\index.hbs");
+        res.status(201).render("index");
     } catch(error){
         res.status(500).send(error);
     }
